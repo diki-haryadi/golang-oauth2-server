@@ -1,3 +1,3 @@
-module github.com/YOUR-USER-OR-ORG-NAME/YOUR-REPO-NAME
+module github.com/diki-haryadi/golang-standards-project-layout
 
-go 1.19
+go 1.22.5
