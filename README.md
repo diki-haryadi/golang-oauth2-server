@@ -2,22 +2,7 @@
 
 Translations:
 
-* [한국어 문서](README_ko.md)
-* [简体中文](README_zh.md)
-* [正體中文](README_zh-TW.md)
-* [简体中文](README_zh-CN.md) - ???
-* [Français](README_fr.md)
-* [日本語](README_ja.md)
-* [Português](README_ptBR.md)
-* [Español](README_es.md)
-* [Română](README_ro.md)
-* [Русский](README_ru.md)
-* [Türkçe](README_tr.md)
-* [Italiano](README_it.md)
-* [Vietnamese](README_vi.md)
-* [Українська](README_ua.md)
 * [Indonesian](README_id.md)
-* [हिन्दी](README_hi.md)
 
 ## Overview
 
