@@ -1,0 +1,14 @@
+rest:
+  listenAddress: "localhost"
+  port: 8000
+  enableSwagger: true
+  gracefulTimeout: 10
+  readTimeout: 10
+  writeTimeout: 10
+  appName: "golang-standards-project-layout"
+
+mongo:
+  uri: mongodb://127.0.0.1:27017
+  db: golang-standards-project-layout
+  connectionTimeout: 10
+  pingTimeout: 3

@@ -1,0 +1,78 @@
+definitions:
+  model.LinkageCallbackBodyRes:
+    properties:
+      _id:
+        type: string
+      access_token:
+        type: string
+      email:
+        type: string
+      expires_in:
+        type: integer
+      image_url:
+        type: string
+      name:
+        type: string
+      refresh_token:
+        type: string
+      spotify_user_id:
+        type: string
+    type: object
+  response.JSONResponse:
+    properties:
+      code:
+        type: string
+      data: {}
+      error:
+        type: string
+      latency:
+        type: integer
+      message:
+        type: string
+      result: {}
+      status_code:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/callback:
+    get:
+      consumes:
+      - application/json
+      description: Spotify Auth Callback
+      parameters:
+      - description: state from callback
+        in: query
+        name: state
+        required: true
+        type: string
+      - description: code from callback
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.JSONResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.LinkageCallbackBodyRes'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.JSONResponse'
+      summary: Spotify Auth Callback
+      tags:
+      - Auth
+swagger: "2.0"
