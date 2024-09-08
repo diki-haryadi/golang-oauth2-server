@@ -12,3 +12,9 @@ mongo:
   db: golang-standards-project-layout
   connectionTimeout: 10
   pingTimeout: 3
+
+postgres:
+  host: 103.150.93.88:54321
+  user: app
+  password: app2024
+  schema: dev_oauth2

@@ -1,8 +1,9 @@
 package config
 
 type MainConfig struct {
-	Rest  RestConfig  `fig:"rest"`
-	Mongo MongoConfig `fig:"mongo"`
+	Rest     RestConfig     `fig:"rest"`
+	Mongo    MongoConfig    `fig:"mongo"`
+	Postgres PostgresConfig `fig:"postgres"`
 }
 
 type (
@@ -20,5 +21,11 @@ type (
 		DB                string `yaml:"db"`
 		ConnectionTimeout int    `yaml:"connectionTimeout"`
 		PingTimeout       int    `yaml:"pingTimeout"`
+	}
+	PostgresConfig struct {
+		Host     string `yaml:"host"`
+		User     string `yml:"user"`
+		Password string `yaml:"password"`
+		Schema   string `yaml:"schema"`
 	}
 )
