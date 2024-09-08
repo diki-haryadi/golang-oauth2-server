@@ -623,7 +623,3 @@ curl --compressed -v localhost:8080/v1/health
 ```
 
 ## Supporting the project
-
-Donate BTC to my wallet if you find this project useful: `12iFVjQ5n3Qdmiai4Mp9EG93NSvDipyRKV`
-
-![Donate BTC][5]
