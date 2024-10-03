@@ -8,10 +8,10 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
-	loggerConstant "golang-oauth2-server/internal/pkg/constant/logger"
-	errorUtils "golang-oauth2-server/internal/pkg/error/error_utils"
-	grpcErrors "golang-oauth2-server/internal/pkg/error/grpc"
-	"golang-oauth2-server/internal/pkg/logger"
+	loggerConstant "golang-oauth2-server/pkg/constant/logger"
+	errorUtils "golang-oauth2-server/pkg/error/error_utils"
+	grpcErrors "golang-oauth2-server/pkg/error/grpc"
+	"golang-oauth2-server/pkg/logger"
 )
 
 // UnaryServerInterceptor returns a problem-detail error to client

@@ -8,7 +8,7 @@ import (
 	grpcMiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 
-	sentryUtils "golang-oauth2-server/internal/pkg/sentry/sentry_utils"
+	sentryUtils "golang-oauth2-server/pkg/sentry/sentry_utils"
 )
 
 func UnaryServerInterceptor(opts *sentryUtils.Options) grpc.UnaryServerInterceptor {
@@ -22,7 +22,11 @@ func UnaryServerInterceptor(opts *sentryUtils.Options) grpc.UnaryServerIntercept
 			ctx = sentry.SetHubOnContext(ctx, hub)
 		}
 		hub.Scope().SetExtra("request", req)
-		hub.Scope().SetTransaction(info.FullMethod)
+		transaction := sentry.StartTransaction(ctx, info.FullMethod)
+		defer transaction.Finish()
+		hub.Scope().SetContext("transaction", map[string]interface{}{
+			"name": info.FullMethod,
+		})
 		hub.Scope().SetTag("application", config.BaseConfig.App.AppName)
 		hub.Scope().SetTag("AppEnv", config.BaseConfig.App.AppEnv)
 
@@ -49,7 +53,11 @@ func StreamServerInterceptor(opts *sentryUtils.Options) grpc.StreamServerInterce
 			hub = sentry.CurrentHub().Clone()
 			ctx = sentry.SetHubOnContext(ctx, hub)
 		}
-		hub.Scope().SetTransaction(info.FullMethod)
+		transaction := sentry.StartTransaction(ctx, info.FullMethod)
+		defer transaction.Finish()
+		hub.Scope().SetContext("transaction", map[string]interface{}{
+			"name": info.FullMethod,
+		})
 		hub.Scope().SetTag("application", config.BaseConfig.App.AppName)
 		hub.Scope().SetTag("AppEnv", config.BaseConfig.App.AppEnv)
 

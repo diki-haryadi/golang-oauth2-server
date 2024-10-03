@@ -6,7 +6,7 @@ import (
 	"github.com/segmentio/kafka-go"
 
 	articleDomain "golang-oauth2-server/internal/modules/article/domain"
-	kafkaProducer "golang-oauth2-server/internal/pkg/kafka/producer"
+	kafkaProducer "golang-oauth2-server/pkg/kafka/producer"
 )
 
 type producer struct {

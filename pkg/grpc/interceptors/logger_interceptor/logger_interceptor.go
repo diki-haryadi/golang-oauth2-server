@@ -7,8 +7,8 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
-	loggerConstant "golang-oauth2-server/internal/pkg/constant/logger"
-	"golang-oauth2-server/internal/pkg/logger"
+	loggerConstant "golang-oauth2-server/pkg/constant/logger"
+	"golang-oauth2-server/pkg/logger"
 )
 
 // UnaryServerInterceptor returns a problem-detail error to client

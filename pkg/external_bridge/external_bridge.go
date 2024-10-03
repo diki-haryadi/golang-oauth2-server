@@ -4,7 +4,7 @@ import (
 	"context"
 	"golang-oauth2-server/config"
 
-	"golang-oauth2-server/internal/pkg/grpc"
+	"golang-oauth2-server/pkg/grpc"
 )
 
 type ExternalBridge struct {

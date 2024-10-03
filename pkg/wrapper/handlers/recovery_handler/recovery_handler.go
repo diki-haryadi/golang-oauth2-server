@@ -5,8 +5,8 @@ import (
 
 	"go.uber.org/zap"
 
-	"golang-oauth2-server/internal/pkg/logger"
-	"golang-oauth2-server/internal/pkg/wrapper"
+	"golang-oauth2-server/pkg/logger"
+	"golang-oauth2-server/pkg/wrapper"
 )
 
 var RecoveryHandler = func(f wrapper.HandlerFunc) wrapper.HandlerFunc {

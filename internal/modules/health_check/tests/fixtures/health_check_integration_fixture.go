@@ -16,9 +16,9 @@ import (
 	kafkaHealthCheckUseCase "golang-oauth2-server/internal/modules/health_check/usecase/kafka_health_check"
 	postgresHealthCheckUseCase "golang-oauth2-server/internal/modules/health_check/usecase/postgres_health_check"
 	tmpDirHealthCheckUseCase "golang-oauth2-server/internal/modules/health_check/usecase/tmp_dir_health_check"
-	"golang-oauth2-server/internal/pkg/logger"
+	"golang-oauth2-server/pkg/logger"
 
-	iContainer "golang-oauth2-server/internal/pkg/infra_container"
+	iContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type IntegrationTestFixture struct {

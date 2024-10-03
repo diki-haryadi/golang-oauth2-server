@@ -14,8 +14,8 @@ import (
 	articleJob "golang-oauth2-server/internal/modules/article/job"
 	articleRepository "golang-oauth2-server/internal/modules/article/repository"
 	articleUseCase "golang-oauth2-server/internal/modules/article/usecase"
-	externalBridge "golang-oauth2-server/internal/pkg/external_bridge"
-	infraContainer "golang-oauth2-server/internal/pkg/infra_container"
+	externalBridge "golang-oauth2-server/pkg/external_bridge"
+	infraContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type configurator struct {

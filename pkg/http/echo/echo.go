@@ -12,10 +12,10 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"go.uber.org/zap"
 
-	"golang-oauth2-server/internal/pkg/constant"
-	loggerConstant "golang-oauth2-server/internal/pkg/constant/logger"
-	echoErrorHandler "golang-oauth2-server/internal/pkg/http/echo/handlers/error_handler"
-	"golang-oauth2-server/internal/pkg/logger"
+	"golang-oauth2-server/pkg/constant"
+	loggerConstant "golang-oauth2-server/pkg/constant/logger"
+	echoErrorHandler "golang-oauth2-server/pkg/http/echo/handlers/error_handler"
+	"golang-oauth2-server/pkg/logger"
 )
 
 type ServerConfig struct {

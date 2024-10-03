@@ -8,11 +8,11 @@ import (
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 
-	loggerConstant "golang-oauth2-server/internal/pkg/constant/logger"
-	customErrors "golang-oauth2-server/internal/pkg/error/custom_error"
-	errorUtils "golang-oauth2-server/internal/pkg/error/error_utils"
-	httpError "golang-oauth2-server/internal/pkg/error/http"
-	"golang-oauth2-server/internal/pkg/logger"
+	loggerConstant "golang-oauth2-server/pkg/constant/logger"
+	customErrors "golang-oauth2-server/pkg/error/custom_error"
+	errorUtils "golang-oauth2-server/pkg/error/error_utils"
+	httpError "golang-oauth2-server/pkg/error/http"
+	"golang-oauth2-server/pkg/logger"
 )
 
 func ErrorHandler(err error, c echo.Context) {

@@ -1,9 +1,9 @@
 package articleException
 
 import (
-	errorList "golang-oauth2-server/internal/pkg/constant/error/error_list"
-	customErrors "golang-oauth2-server/internal/pkg/error/custom_error"
-	errorUtils "golang-oauth2-server/internal/pkg/error/error_utils"
+	errorList "golang-oauth2-server/pkg/constant/error/error_list"
+	customErrors "golang-oauth2-server/pkg/error/custom_error"
+	errorUtils "golang-oauth2-server/pkg/error/error_utils"
 )
 
 func CreateUsersValidationExc(err error) error {

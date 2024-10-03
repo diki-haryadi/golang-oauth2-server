@@ -3,7 +3,7 @@ package articleJob
 import (
 	"context"
 
-	"golang-oauth2-server/internal/pkg/wrapper"
+	"golang-oauth2-server/pkg/wrapper"
 )
 
 func (j *job) logArticleWorker() wrapper.HandlerFunc {

@@ -52,7 +52,7 @@ Lihat direktori [`/cmd`](cmd/README.md) untuk contoh-contoh lebih lanjut.
 
 Kode aplikasi dan library privat. Ini adalah kode anda yang tidak ingin diimpor oleh aplikasi atau library lain. Perlu dicatat bahwa pola tata letak ini dipaksakan atau dijaga oleh kompiler Go itu sendiri. Lihat catatan rilis Go 1.4 [`di sini`](https://golang.org/doc/go1.4#internalpackages) untuk detailnya. Perhatikan bahwa anda tidak dibatasi pada direktori top level `internal` saja. Anda dapat memiliki lebih dari satu direktori `internal` di setiap tingkatan proyek anda.
 
-Secara opsional anda dapat menambahkan struktur tambahan ke paket internal anda, untuk memisahkan kode internal yang bersifat shared dan non-shared. Hal ini tidak diwajibkan (terutama untuk proyek-proyek kecil), tetapi bagus untuk memiliki petunjuk visual yang menunjukkan penggunaan paket yang dimaksudkan. Sebenarnya kode aplikasi dapat ditempatkan di direktori `/internal/app` (misalnya, `/internal/app/myapp`) dan kode yang dibagikan oleh aplikasi tersebut dapat ditempatkan di direktori `/internal/pkg` (misalnya, `/internal/pkg/myprivlib`).
+Secara opsional anda dapat menambahkan struktur tambahan ke paket internal anda, untuk memisahkan kode internal yang bersifat shared dan non-shared. Hal ini tidak diwajibkan (terutama untuk proyek-proyek kecil), tetapi bagus untuk memiliki petunjuk visual yang menunjukkan penggunaan paket yang dimaksudkan. Sebenarnya kode aplikasi dapat ditempatkan di direktori `/internal/app` (misalnya, `/internal/app/myapp`) dan kode yang dibagikan oleh aplikasi tersebut dapat ditempatkan di direktori `/pkg` (misalnya, `/pkg/myprivlib`).
 
 ### `/pkg`
 

@@ -1,6 +1,6 @@
 package cronJob
 
-import "golang-oauth2-server/internal/pkg/logger"
+import "golang-oauth2-server/pkg/logger"
 
 type CronLogger struct{}
 

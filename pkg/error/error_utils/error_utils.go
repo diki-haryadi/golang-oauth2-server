@@ -9,10 +9,10 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 
-	errorList "golang-oauth2-server/internal/pkg/constant/error/error_list"
-	errorContract "golang-oauth2-server/internal/pkg/error/contracts"
-	customError "golang-oauth2-server/internal/pkg/error/custom_error"
-	"golang-oauth2-server/internal/pkg/logger"
+	errorList "golang-oauth2-server/pkg/constant/error/error_list"
+	errorContract "golang-oauth2-server/pkg/error/contracts"
+	customError "golang-oauth2-server/pkg/error/custom_error"
+	"golang-oauth2-server/pkg/logger"
 )
 
 // CheckErrorMessages checks for specific messages contains in the error
