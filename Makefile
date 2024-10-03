@@ -93,24 +93,24 @@ lint-go: ## Use golintci-lint on your project
 ## ---------- Migration ----------
 .PHONY: rollback
 migrate-rollback: ### migration roll-back
-	migrate -source db/migrations -database $(PG_URL) down
+	migrate -source internal/db/migrations -database $(PG_URL) down
 
 .PHONY: drop
 migrate-drop: ### migration drop
-	migrate -source db/migrations -database $(PG_URL)  drop
+	migrate -source internal/db/migrations -database $(PG_URL)  drop
 
 .PHONY: migrate-create
 # ex: make migrate-create migrate_name=users
 migrate-create:  ### create new migration
-	migrate create -ext sql -dir db/migrations $(migrate_name)
+	migrate create -ext sql -dir internal/db/migrations $(migrate_name)
 
 .PHONY: migrate-up
 migrate-up: ### migration up
-	migrate -path db/migrations -database $(PG_URL) up
+	migrate -path internal/internal/db/migrations -database $(PG_URL) up
 
 .PHONY: force
 migrate-force: ### force
-	migrate -path db/migrations -database $(PG_URL) force $(id)
+	migrate -path internal/internal/db/migrations -database $(PG_URL) force $(id)
 
 gen-go:
 	protoc --proto_path=./api --go-grpc_out=require_unimplemented_servers=false:./api/${domain}/v1/ --go_out=./api/${domain}/v1/ ./api/${domain}/v1/*.proto
