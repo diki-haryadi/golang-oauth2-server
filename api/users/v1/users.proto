@@ -1,0 +1,31 @@
+syntax= "proto3";
+
+package users.v1;
+option  go_package = "./;users_v1";
+
+message CreateUsersRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateUsersResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message GetUsersByIdRequest {
+  string id = 1;
+}
+
+message GetUsersByIdResponse {
+  string id =1;
+  string username = 2;
+  string email = 3;
+}
+
+service UsersService {
+  rpc CreateUsers(CreateUsersRequest) returns (CreateUsersResponse);
+  rpc GetUsersById(GetUsersByIdRequest) returns (GetUsersByIdResponse);
+}

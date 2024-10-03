@@ -1,0 +1,3 @@
+[submodule "gen/go"]
+	path = gen/go
+	url = https://golang-oauth2-server/api/protobuf-template-go.git

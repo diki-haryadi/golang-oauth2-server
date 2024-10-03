@@ -5,11 +5,11 @@ rest:
   gracefulTimeout: 10
   readTimeout: 10
   writeTimeout: 10
-  appName: "golang-standards-project-layout"
+  appName: "golang-oauth2-server"
 
 mongo:
   uri: mongodb://127.0.0.1:27017
-  db: golang-standards-project-layout
+  db: golang-oauth2-server
   connectionTimeout: 10
   pingTimeout: 3
 
