@@ -4,8 +4,8 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
-	"golang-oauth2-server/internal/pkg/constant"
-	"golang-oauth2-server/internal/pkg/env"
+	"golang-oauth2-server/pkg/constant"
+	"golang-oauth2-server/pkg/env"
 	"log"
 )
 
@@ -113,7 +113,7 @@ func LoadConfig() *Config {
 	var configLoader Config
 
 	if err := envconfig.Process("BaseConfig", &configLoader); err != nil {
-		log.Printf("error load configs: %v", err)
+		log.Printf("error load config: %v", err)
 	}
 
 	BaseConfig = &configLoader

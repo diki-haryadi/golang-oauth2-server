@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"

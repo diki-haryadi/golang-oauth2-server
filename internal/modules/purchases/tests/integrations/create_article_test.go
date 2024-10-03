@@ -9,12 +9,12 @@ import (
 	"testing"
 
 	"github.com/labstack/echo/v4"
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	articleDto "golang-oauth2-server/internal/modules/article/dto"
 	articleFixture "golang-oauth2-server/internal/modules/article/tests/fixtures"
-	grpcError "golang-oauth2-server/internal/pkg/error/grpc"
-	httpError "golang-oauth2-server/internal/pkg/error/http"
+	grpcError "golang-oauth2-server/pkg/error/grpc"
+	httpError "golang-oauth2-server/pkg/error/http"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"

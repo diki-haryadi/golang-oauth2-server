@@ -1,10 +1,10 @@
 package logger
 
 import (
+	"golang-oauth2-server/config"
 	"log"
 	"os"
 	"path/filepath"
-	"questr/config"
 	"runtime"
 
 	"go.uber.org/zap"

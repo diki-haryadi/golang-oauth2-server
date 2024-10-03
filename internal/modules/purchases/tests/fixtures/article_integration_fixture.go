@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
@@ -17,9 +17,9 @@ import (
 	articleKafkaProducer "golang-oauth2-server/internal/modules/article/delivery/kafka/producer"
 	articleRepo "golang-oauth2-server/internal/modules/article/repository"
 	articleUseCase "golang-oauth2-server/internal/modules/article/usecase"
-	externalBridge "golang-oauth2-server/internal/pkg/external_bridge"
-	iContainer "golang-oauth2-server/internal/pkg/infra_container"
-	"golang-oauth2-server/internal/pkg/logger"
+	externalBridge "golang-oauth2-server/pkg/external_bridge"
+	iContainer "golang-oauth2-server/pkg/infra_container"
+	"golang-oauth2-server/pkg/logger"
 )
 
 const BUFSIZE = 1024 * 1024

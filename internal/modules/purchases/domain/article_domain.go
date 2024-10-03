@@ -7,7 +7,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/segmentio/kafka-go"
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	articleDto "golang-oauth2-server/internal/modules/article/dto"
 )
