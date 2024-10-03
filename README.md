@@ -1,19 +1,19 @@
-[1]: ../../../assets/blob/master/go-oauth2-server/login_screenshot.png
-[2]: ../../../assets/blob/master/go-oauth2-server/authorization_code_screenshot.png
-[3]: ../../../assets/blob/master/go-oauth2-server/implicit_screenshot.png
+[1]: ../../../assets/blob/master/golang-oauth2-server/login_screenshot.png
+[2]: ../../../assets/blob/master/golang-oauth2-server/authorization_code_screenshot.png
+[3]: ../../../assets/blob/master/golang-oauth2-server/implicit_screenshot.png
 [4]: http://patreon_public_assets.s3.amazonaws.com/sized/becomeAPatronBanner.png
-[5]: http://richardknop.com/images/btcaddress.png
+[5]: http://diki-haryadi.com/images/btcaddress.png
 
 ## Go OAuth2 Server
 
 This service implements [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749). Excerpts from the specification are included in this README file to describe different grant types. Please read the full spec for more detailed information.
 
-[![Travis Status for RichardKnop/go-oauth2-server](https://travis-ci.org/RichardKnop/go-oauth2-server.svg?branch=master&label=linux+build)](https://travis-ci.org/RichardKnop/go-oauth2-server)
-[![godoc for RichardKnop/go-oauth2-server](https://godoc.org/github.com/nathany/looper?status.svg)](http://godoc.org/github.com/RichardKnop/go-oauth2-server)
-[![codecov for RichardKnop/go-oauth2-server](https://codecov.io/gh/RichardKnop/go-oauth2-server/branch/master/graph/badge.svg)](https://codecov.io/gh/RichardKnop/go-oauth2-server)
+[![Travis Status for diki-haryadi/golang-oauth2-server](https://travis-ci.org/diki-haryadi/golang-oauth2-server.svg?branch=master&label=linux+build)](https://travis-ci.org/diki-haryadi/golang-oauth2-server)
+[![godoc for diki-haryadi/golang-oauth2-server](https://godoc.org/github.com/nathany/looper?status.svg)](http://godoc.org/github.com/diki-haryadi/golang-oauth2-server)
+[![codecov for diki-haryadi/golang-oauth2-server](https://codecov.io/gh/diki-haryadi/golang-oauth2-server/branch/master/graph/badge.svg)](https://codecov.io/gh/diki-haryadi/golang-oauth2-server)
 
-[![Sourcegraph for RichardKnop/go-oauth2-server](https://sourcegraph.com/github.com/RichardKnop/go-oauth2-server/-/badge.svg)](https://sourcegraph.com/github.com/RichardKnop/go-oauth2-server?badge)
-[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://richardknop.github.io/donate/)
+[![Sourcegraph for diki-haryadi/golang-oauth2-server](https://sourcegraph.com/github.com/diki-haryadi/golang-oauth2-server/-/badge.svg)](https://sourcegraph.com/github.com/diki-haryadi/golang-oauth2-server?badge)
+[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://diki-haryadi.github.io/donate/)
 
 ---
 
@@ -374,7 +374,7 @@ The authorization server responds meta-information about a token.
 
 ## Plugins
 
-This server is easily extended or modified through the use of plugins. Four services, [health](https://github.com/RichardKnop/go-oauth2-server/tree/master/health), [oauth](https://github.com/RichardKnop/go-oauth2-server/tree/master/oauth), [session](https://github.com/RichardKnop/go-oauth2-server/tree/master/session) and [web](https://github.com/RichardKnop/go-oauth2-server/tree/master/web) are available for modification.
+This server is easily extended or modified through the use of plugins. Four services, [health](https://github.com/diki-haryadi/golang-oauth2-server/tree/master/health), [oauth](https://github.com/diki-haryadi/golang-oauth2-server/tree/master/oauth), [session](https://github.com/diki-haryadi/golang-oauth2-server/tree/master/session) and [web](https://github.com/diki-haryadi/golang-oauth2-server/tree/master/web) are available for modification.
 
 In order to implement a plugin:
 1. Create your own interface that implements all of methods of the service you are replacing.
@@ -546,13 +546,13 @@ The binary accepts an optional flag of `--configBackend` which can be set to `et
 Run migrations:
 
 ```sh
-go-oauth2-server migrate
+golang-oauth2-server migrate
 ```
 
 And finally, run the app:
 
 ```sh
-go-oauth2-server runserver
+golang-oauth2-server runserver
 ```
 
 When deploying, you can set etcd related environment variables:
@@ -574,10 +574,10 @@ You can also set consul related variables
 and the equivalent above commands would be
 
 ```sh
-go-oauth2-server --configBackend consul migrate
+golang-oauth2-server --configBackend consul migrate
 ```
 ```sh
-go-oauth2-server --configBackend consul runserver
+golang-oauth2-server --configBackend consul runserver
 ```
 
 ## Testing
@@ -595,14 +595,14 @@ make test
 Build a Docker image and run the app in a container:
 
 ```sh
-docker build -t go-oauth2-server:latest .
-docker run -e ETCD_ENDPOINTS=localhost:2379 -p 8080:8080 --name go-oauth2-server go-oauth2-server:latest
+docker build -t golang-oauth2-server:latest .
+docker run -e ETCD_ENDPOINTS=localhost:2379 -p 8080:8080 --name golang-oauth2-server golang-oauth2-server:latest
 ```
 
 You can load fixtures with `docker exec` command:
 
 ```sh
-docker exec <container_id> /go/bin/go-oauth2-server loaddata \
+docker exec <container_id> /go/bin/golang-oauth2-server loaddata \
   oauth/fixtures/scopes.yml \
   oauth/fixtures/roles.yml \
   oauth/fixtures/test_clients.yml
