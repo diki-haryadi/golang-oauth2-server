@@ -7,10 +7,10 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	loggerConstant "golang-oauth2-server/internal/pkg/constant/logger"
-	customError "golang-oauth2-server/internal/pkg/error/custom_error"
-	"golang-oauth2-server/internal/pkg/logger"
-	"golang-oauth2-server/internal/pkg/wrapper"
+	loggerConstant "golang-oauth2-server/pkg/constant/logger"
+	customError "golang-oauth2-server/pkg/error/custom_error"
+	"golang-oauth2-server/pkg/logger"
+	"golang-oauth2-server/pkg/wrapper"
 )
 
 var ErrorHandler = func(f wrapper.HandlerFunc) wrapper.HandlerFunc {

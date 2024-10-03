@@ -10,12 +10,12 @@ import (
 	"github.com/segmentio/kafka-go"
 	"go.uber.org/zap"
 
-	"golang-oauth2-server/internal/pkg/grpc"
-	echoHttp "golang-oauth2-server/internal/pkg/http/echo"
-	kafkaConsumer "golang-oauth2-server/internal/pkg/kafka/consumer"
-	kafkaProducer "golang-oauth2-server/internal/pkg/kafka/producer"
-	"golang-oauth2-server/internal/pkg/logger"
-	"golang-oauth2-server/internal/pkg/postgres"
+	"golang-oauth2-server/pkg/grpc"
+	echoHttp "golang-oauth2-server/pkg/http/echo"
+	kafkaConsumer "golang-oauth2-server/pkg/kafka/consumer"
+	kafkaProducer "golang-oauth2-server/pkg/kafka/producer"
+	"golang-oauth2-server/pkg/logger"
+	"golang-oauth2-server/pkg/postgres"
 )
 
 type IContainer struct {

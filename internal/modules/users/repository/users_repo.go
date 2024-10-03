@@ -6,7 +6,7 @@ import (
 
 	usersDomain "golang-oauth2-server/internal/modules/users/domain"
 	usersDto "golang-oauth2-server/internal/modules/users/dto"
-	"golang-oauth2-server/internal/pkg/postgres"
+	"golang-oauth2-server/pkg/postgres"
 )
 
 type repository struct {

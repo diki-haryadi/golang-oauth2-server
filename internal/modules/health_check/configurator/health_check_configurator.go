@@ -13,7 +13,7 @@ import (
 	healthCheckHttp "golang-oauth2-server/internal/modules/health_check/delivery/http"
 	healthCheckDomain "golang-oauth2-server/internal/modules/health_check/domain"
 	healthCheckUseCase "golang-oauth2-server/internal/modules/health_check/usecase"
-	infraContainer "golang-oauth2-server/internal/pkg/infra_container"
+	infraContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type configurator struct {

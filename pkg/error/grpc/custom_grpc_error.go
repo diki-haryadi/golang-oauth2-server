@@ -5,7 +5,7 @@ import (
 
 	"google.golang.org/grpc/codes"
 
-	errorConstant "golang-oauth2-server/internal/pkg/constant/error"
+	errorConstant "golang-oauth2-server/pkg/constant/error"
 )
 
 func NewGrpcValidationError(code int, message string, details map[string]string) GrpcErr {

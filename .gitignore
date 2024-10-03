@@ -25,3 +25,4 @@ config/file/sandbox*
 
 # config
 config/file/*.yaml
+.env

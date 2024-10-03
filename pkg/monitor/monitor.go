@@ -7,7 +7,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	"golang-oauth2-server/internal/pkg/env"
+	"golang-oauth2-server/pkg/env"
 )
 
 func init() {

@@ -2,7 +2,7 @@ package postgresHealthCheckUseCase
 
 import (
 	healthCheckDomain "golang-oauth2-server/internal/modules/health_check/domain"
-	"golang-oauth2-server/internal/pkg/postgres"
+	"golang-oauth2-server/pkg/postgres"
 )
 
 type useCase struct {

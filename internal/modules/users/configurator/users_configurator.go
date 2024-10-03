@@ -12,8 +12,8 @@ import (
 	usersDomain "golang-oauth2-server/internal/modules/users/domain"
 	usersRepository "golang-oauth2-server/internal/modules/users/repository"
 	usersUseCase "golang-oauth2-server/internal/modules/users/usecase"
-	externalBridge "golang-oauth2-server/internal/pkg/external_bridge"
-	infraContainer "golang-oauth2-server/internal/pkg/infra_container"
+	externalBridge "golang-oauth2-server/pkg/external_bridge"
+	infraContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type configurator struct {

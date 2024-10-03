@@ -3,7 +3,7 @@ package kafkaConsumer
 import (
 	"github.com/segmentio/kafka-go"
 
-	"golang-oauth2-server/internal/pkg/logger"
+	"golang-oauth2-server/pkg/logger"
 )
 
 type Reader struct {

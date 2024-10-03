@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	errorBuf "golang-oauth2-server/api/protobuf-template-go/shared/error/v1"
+	errorBuf "golang-oauth2-server/api/shared/error/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

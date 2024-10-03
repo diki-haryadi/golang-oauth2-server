@@ -11,11 +11,11 @@ import (
 	googleGrpc "google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	grpcErrorInterceptor "golang-oauth2-server/internal/pkg/grpc/interceptors/error_interceptor"
-	grpcLoggerInterceptor "golang-oauth2-server/internal/pkg/grpc/interceptors/logger_interceptor"
-	grpcSentryInterceptor "golang-oauth2-server/internal/pkg/grpc/interceptors/sentry_interceptor"
-	"golang-oauth2-server/internal/pkg/logger"
-	sentryUtils "golang-oauth2-server/internal/pkg/sentry/sentry_utils"
+	grpcErrorInterceptor "golang-oauth2-server/pkg/grpc/interceptors/error_interceptor"
+	grpcLoggerInterceptor "golang-oauth2-server/pkg/grpc/interceptors/logger_interceptor"
+	grpcSentryInterceptor "golang-oauth2-server/pkg/grpc/interceptors/sentry_interceptor"
+	"golang-oauth2-server/pkg/logger"
+	sentryUtils "golang-oauth2-server/pkg/sentry/sentry_utils"
 )
 
 type Server interface {

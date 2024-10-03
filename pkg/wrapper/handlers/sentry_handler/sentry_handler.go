@@ -6,8 +6,8 @@ import (
 
 	"github.com/getsentry/sentry-go"
 
-	sentryUtils "golang-oauth2-server/internal/pkg/sentry/sentry_utils"
-	"golang-oauth2-server/internal/pkg/wrapper"
+	sentryUtils "golang-oauth2-server/pkg/sentry/sentry_utils"
+	"golang-oauth2-server/pkg/wrapper"
 )
 
 var SentryHandler = func(f wrapper.HandlerFunc) wrapper.HandlerFunc {

@@ -4,12 +4,12 @@ import (
 	"context"
 
 	articleDomain "golang-oauth2-server/internal/modules/article/domain"
-	kafkaConsumer "golang-oauth2-server/internal/pkg/kafka/consumer"
-	"golang-oauth2-server/internal/pkg/logger"
-	"golang-oauth2-server/internal/pkg/wrapper"
-	wrapperErrorhandler "golang-oauth2-server/internal/pkg/wrapper/handlers/error_handler"
-	wrapperRecoveryHandler "golang-oauth2-server/internal/pkg/wrapper/handlers/recovery_handler"
-	wrapperSentryHandler "golang-oauth2-server/internal/pkg/wrapper/handlers/sentry_handler"
+	kafkaConsumer "golang-oauth2-server/pkg/kafka/consumer"
+	"golang-oauth2-server/pkg/logger"
+	"golang-oauth2-server/pkg/wrapper"
+	wrapperErrorhandler "golang-oauth2-server/pkg/wrapper/handlers/error_handler"
+	wrapperRecoveryHandler "golang-oauth2-server/pkg/wrapper/handlers/recovery_handler"
+	wrapperSentryHandler "golang-oauth2-server/pkg/wrapper/handlers/sentry_handler"
 )
 
 type consumer struct {

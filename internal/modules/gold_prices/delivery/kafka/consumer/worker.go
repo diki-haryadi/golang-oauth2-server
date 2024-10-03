@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 
 	articleDto "golang-oauth2-server/internal/modules/article/dto"
-	"golang-oauth2-server/internal/pkg/logger"
-	"golang-oauth2-server/internal/pkg/wrapper"
+	"golang-oauth2-server/pkg/logger"
+	"golang-oauth2-server/pkg/wrapper"
 )
 
 func (c *consumer) createEventWorker(

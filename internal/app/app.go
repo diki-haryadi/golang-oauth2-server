@@ -9,8 +9,8 @@ import (
 	articleConfigurator "golang-oauth2-server/internal/modules/article/configurator"
 	healthCheckConfigurator "golang-oauth2-server/internal/modules/health_check/configurator"
 	usersConfigurator "golang-oauth2-server/internal/modules/users/configurator"
-	externalBridge "golang-oauth2-server/internal/pkg/external_bridge"
-	iContainer "golang-oauth2-server/internal/pkg/infra_container"
+	externalBridge "golang-oauth2-server/pkg/external_bridge"
+	iContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type App struct{}

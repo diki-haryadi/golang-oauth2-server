@@ -5,9 +5,9 @@ import (
 
 	"google.golang.org/grpc/codes"
 
-	errorConstant "golang-oauth2-server/internal/pkg/constant/error"
-	errorList "golang-oauth2-server/internal/pkg/constant/error/error_list"
-	customError "golang-oauth2-server/internal/pkg/error/custom_error"
+	errorConstant "golang-oauth2-server/pkg/constant/error"
+	errorList "golang-oauth2-server/pkg/constant/error/error_list"
+	customError "golang-oauth2-server/pkg/error/custom_error"
 )
 
 func ParseError(err error) HttpErr {

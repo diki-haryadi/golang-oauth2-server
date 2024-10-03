@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	errorConstant "golang-oauth2-server/internal/pkg/constant/error"
+	errorConstant "golang-oauth2-server/pkg/constant/error"
 )
 
 func NewHttpValidationError(code int, message string, details map[string]string) HttpErr {

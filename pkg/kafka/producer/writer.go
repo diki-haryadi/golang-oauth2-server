@@ -4,7 +4,7 @@ import (
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/compress"
 
-	"golang-oauth2-server/internal/pkg/logger"
+	"golang-oauth2-server/pkg/logger"
 )
 
 type Writer struct {
