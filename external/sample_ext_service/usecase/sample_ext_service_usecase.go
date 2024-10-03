@@ -3,11 +3,11 @@ package sampleExtServiceUseCase
 import (
 	"context"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	sampleExtServiceDomain "golang-oauth2-server/external/sample_ext_service/domain"
-	grpcError "golang-oauth2-server/internal/pkg/error/grpc"
-	"golang-oauth2-server/internal/pkg/grpc"
+	grpcError "golang-oauth2-server/pkg/error/grpc"
+	"golang-oauth2-server/pkg/grpc"
 )
 
 type sampleExtServiceUseCase struct {

@@ -3,7 +3,7 @@ package sampleExtServiceDomain
 import (
 	"context"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 )
 
 type SampleExtServiceUseCase interface {

@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	articleDomain "golang-oauth2-server/internal/modules/article/domain"
 	articleDto "golang-oauth2-server/internal/modules/article/dto"

@@ -3,7 +3,7 @@ package articleConfigurator
 import (
 	"context"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	sampleExtServiceUseCase "golang-oauth2-server/external/sample_ext_service/usecase"
 	articleGrpcController "golang-oauth2-server/internal/modules/article/delivery/grpc"
@@ -14,8 +14,8 @@ import (
 	articleJob "golang-oauth2-server/internal/modules/article/job"
 	articleRepository "golang-oauth2-server/internal/modules/article/repository"
 	articleUseCase "golang-oauth2-server/internal/modules/article/usecase"
-	externalBridge "golang-oauth2-server/internal/pkg/external_bridge"
-	infraContainer "golang-oauth2-server/internal/pkg/infra_container"
+	externalBridge "golang-oauth2-server/pkg/external_bridge"
+	infraContainer "golang-oauth2-server/pkg/infra_container"
 )
 
 type configurator struct {

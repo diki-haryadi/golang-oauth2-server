@@ -3,7 +3,6 @@ package http
 import (
 	"github.com/spf13/cobra"
 	"golang-oauth2-server/internal/app"
-	"golang-oauth2-server/internal/pkg/logger"
 	"golang-oauth2-server/pkg/logger"
 )
 

@@ -3,7 +3,7 @@ package articleConfigurator
 import (
 	"context"
 
-	articleV1 "golang-oauth2-server/api/protobuf-template-go/golang_template/article/v1"
+	articleV1 "golang-oauth2-server/api/article/v1"
 
 	sampleExtServiceUseCase "golang-oauth2-server/external/sample_ext_service/usecase"
 	articleGrpcController "golang-oauth2-server/internal/modules/article/delivery/grpc"
