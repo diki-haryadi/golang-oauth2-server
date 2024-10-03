@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"golang-standards-project-layout/cmd/http"
-	//"golang-standards-project-layout/cmd/telegram_listener"
+	"golang-oauth2-server/cmd/http"
+	//"golang-oauth2-server/cmd/telegram_listener"
 
 	"github.com/spf13/cobra"
 )

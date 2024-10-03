@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"golang-standards-project-layout/pkg/custerr"
-	"golang-standards-project-layout/pkg/response"
+	"golang-oauth2-server/internal/pkg/custerr"
+	"golang-oauth2-server/internal/pkg/response"
 )
 
 var (

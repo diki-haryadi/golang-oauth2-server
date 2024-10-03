@@ -1,58 +1,135 @@
-#!/usr/bin/env bash
-GO_BUILD_ENV := CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-DOCKER_BUILD=$(shell pwd)/.docker_build
-DOCKER_CMD=$(DOCKER_BUILD)/go-getting-started
+PKG := golang-oauth2-server
+VERSION ?= $(shell git describe --match 'v[0-9]*' --dirty='.m' --always --tags)
+BINARY_NAME=infranyx_go_grpc_template
+BINARY_PATH=./out/bin/$(BINARY_NAME)
+MAIN_PATH=./cmd/main.go
 
-$(DOCKER_CMD): clean
-	mkdir -p $(DOCKER_BUILD)
-	$(GO_BUILD_ENV) go build -v -o $(DOCKER_CMD) .
+GOCMD=go
 
-swag:
-	# @export PATH="$HOME/go/bin:$PATH"
-	@echo "> Generate Swagger Docs"
-	# @if ! command -v swag &> /dev/null; then go install github.com/swaggo/swag/cmd/swag ; fi
-	@swag init --parseVendor --parseDependency
+TEST_COVERAGE_FLAGS = -race -coverprofile=coverage.out -covermode=atomic
+TEST_FLAGS?= -timeout 15m
 
-clean:
-	rm -rf $(DOCKER_BUILD)
+# Set ENV
+export PG_URL=postgres://${USERNAME}:{PASSWORD}@${HOST}:${PORT}/${SCHEMA}?sslmode=disable ### DB Conn String For Migrations
 
-heroku: $(DOCKER_CMD)
-	heroku container:push web
+GREEN  := $(shell tput -Txterm setaf 2)
+YELLOW := $(shell tput -Txterm setaf 3)
+WHITE  := $(shell tput -Txterm setaf 7)
+CYAN   := $(shell tput -Txterm setaf 6)
+RESET  := $(shell tput -Txterm sgr0)
 
-.PHONY: fmt lint golint test test-with-coverage ci
-# TODO: When Go 1.9 is released vendor folder should be ignored automatically
-PACKAGES=`go list ./... | grep -v vendor | grep -v mocks`
+## ---------- Usual ----------
+.PHONY: vendor
+vendor: ## go mod vendor
+	$(GOCMD) mod vendor
 
-fmt:
-	for pkg in ${PACKAGES}; do \
-		go fmt $$pkg; \
-	done;
+.PHONY: tidy
+tidy: ## go mod tidy
+	$(GOCMD) mod tidy
 
-lint:
-	gometalinter --tests --disable-all --deadline=120s -E vet -E gofmt -E misspell -E ineffassign -E goimports -E deadcode ./...
+.PHONY: vet
+vet: ## go mod vet
+	$(GOCMD) vet
 
-golint:
-	for pkg in ${PACKAGES}; do \
-		golint $$pkg; \
-	done;
+.PHONY: dep
+dep: ## go mod download
+	$(GOCMD) mod download
 
-test:
-	TEST_FAILED= ; \
-	for pkg in ${PACKAGES}; do \
-		go test $$pkg || TEST_FAILED=1; \
-	done; \
-	[ -z "$$TEST_FAILED" ]
+.PHONY: run_dev
+run_dev: ## go run cmd/main.go
+	$(GOCMD) run $(MAIN_PATH)
 
-test-with-coverage:
-	echo "" > coverage.out
-	echo "mode: set" > coverage-all.out
-	TEST_FAILED= ; \
-	for pkg in ${PACKAGES}; do \
-		go test -coverprofile=coverage.out -covermode=set $$pkg || TEST_FAILED=1; \
-		tail -n +2 coverage.out >> coverage-all.out; \
-	done; \
-	[ -z "$$TEST_FAILED" ]
-	#go tool cover -html=coverage-all.out
+.PHONY: watch
+watch: ## Run the code with cosmtrek/air to have automatic reload on changes
+	$(eval PACKAGE_NAME=$(shell head -n 1 go.mod | cut -d ' ' -f2))
+	docker run -it --rm -w /go/src/$(PACKAGE_NAME) -v $(shell pwd):/go/src/$(PACKAGE_NAME) -p $(SERVICE_PORT):$(SERVICE_PORT) cosmtrek/air
 
-ci:
-	bash -c 'docker-compose -f docker-compose.test.yml -p go_oauth2_server_ci up --build --abort-on-container-exit --exit-code-from sut'
+## ---------- Build ----------
+.PHONY: build
+build: tidy vendor ## tidy , vendor , mkdir out/bin , build
+	mkdir -p out/bin
+
+	GOARCH=amd64 GOOS=darwin GO111MODULE=on $(GOCMD) build -mod vendor -o  ${BINARY_PATH}  ${MAIN_PATH}
+
+.PHONY: run
+run: ## run binary
+	GOARCH=amd64 GOOS=darwin ./${BINARY_PATH}
+
+.PHONY: clean
+clean: ## Remove build related file
+	go clean
+	rm -fr ./bin
+	rm -fr ./out
+	rm -f ./junit-report.xml checkstyle-report.xml ./coverage.xml ./coverage.out ./profile.cov yamllint-checkstyle.xml
+
+## ---------- Test ----------
+.PHONY: test
+test: ## go clean -testcache && go test ./...
+	go clean -testcache && go test ./...
+
+.PHONY: test_coverage
+test_coverage: ## go test ./... -coverprofile=coverage.out
+	go test ./... -coverprofile=coverage.out
+
+## ---------- Lint ----------
+.PHONY: lint
+lint: lint-go lint-dockerfile  ## Run all available linters
+
+.PHONY: lint-dockerfile
+lint-dockerfile: ## Lint your Dockerfile
+# If dockerfile is present we lint it.
+ifeq ($(shell test -e ./Dockerfile && echo -n yes),yes)
+	$(eval CONFIG_OPTION = $(shell [ -e $(shell pwd)/.hadolint.yaml ] && echo "-v $(shell pwd)/.hadolint.yaml:/root/.config/hadolint.yaml" || echo "" ))
+	$(eval OUTPUT_OPTIONS = $(shell [ "${EXPORT_RESULT}" == "true" ] && echo "--format checkstyle" || echo "" ))
+	$(eval OUTPUT_FILE = $(shell [ "${EXPORT_RESULT}" == "true" ] && echo "| tee /dev/tty > checkstyle-report.xml" || echo "" ))
+	docker run --rm -i $(CONFIG_OPTION) hadolint/hadolint hadolint $(OUTPUT_OPTIONS) - < ./Dockerfile $(OUTPUT_FILE)
+endif
+
+.PHONY: lint-go
+lint-go: ## Use golintci-lint on your project
+	$(eval OUTPUT_OPTIONS = $(shell [ "${EXPORT_RESULT}" == "true" ] && echo "--out-format checkstyle ./... | tee /dev/tty > checkstyle-report.xml" || echo "" ))
+	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:latest-alpine golangci-lint run --deadline=65s $(OUTPUT_OPTIONS)
+
+## ---------- Migration ----------
+.PHONY: rollback
+migrate-rollback: ### migration roll-back
+	migrate -source db/migrations -database $(PG_URL) down
+
+.PHONY: drop
+migrate-drop: ### migration drop
+	migrate -source db/migrations -database $(PG_URL)  drop
+
+.PHONY: migrate-create
+# ex: make migrate-create migrate_name=users
+migrate-create:  ### create new migration
+	migrate create -ext sql -dir db/migrations $(migrate_name)
+
+.PHONY: migrate-up
+migrate-up: ### migration up
+	migrate -path db/migrations -database $(PG_URL) up
+
+.PHONY: force
+migrate-force: ### force
+	migrate -path db/migrations -database $(PG_URL) force $(id)
+
+gen-go:
+	protoc --proto_path=./api --go-grpc_out=require_unimplemented_servers=false:./api/${domain}/v1/ --go_out=./api/${domain}/v1/ ./api/${domain}/v1/*.proto
+#--go-grpc_out=require_unimplemented_servers=false:.
+.PHONY: protoc
+
+clean-cache:
+	go clean -modcache
+
+## ---------- Help ----------
+.PHONY: help
+help: ## Show this help.
+	@echo ''
+	@echo ${CYAN}'PKG:' ${GREEN}$(PKG)
+	@echo 'Usage:'
+	@echo '  ${YELLOW}make${RESET} ${GREEN}<target>${RESET}'
+	@echo ''
+	@echo 'Targets:'
+	@awk 'BEGIN {FS = ":.*?## "} { \
+		if (/^[a-zA-Z_-]+:.*?##.*$$/) {printf "    ${YELLOW}%-20s${GREEN}%s${RESET}\n", $$1, $$2} \
+		else if (/^## .*$$/) {printf "  ${CYAN}%s${RESET}\n", substr($$1,4)} \
+		}' $(MAKEFILE_LIST)

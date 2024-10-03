@@ -1,10 +1,10 @@
 package http
 
 import (
-	"log"
-
 	"github.com/spf13/cobra"
-	"golang-standards-project-layout/internal/init/assembler"
+	"golang-oauth2-server/internal/app"
+	"golang-oauth2-server/internal/pkg/logger"
+	"golang-oauth2-server/pkg/logger"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 
 func rootPreRun(cmd *cobra.Command, args []string) {
 	//logger.InitGlobalLogger(&logger.Config{
-	//	ServiceName: "golang-standards-project-layout",
+	//	ServiceName: "golang-oauth2-server",
 	//	Level:       zerolog.DebugLevel,
 	//})
 }
@@ -28,29 +28,9 @@ func ServeHTTPCmd() *cobra.Command {
 }
 
 func runHTTP(cmd *cobra.Command, args []string) error {
-	configURL, _ := cmd.Flags().GetString("config")
-	bootstrapHTTP(assembler.NewAssembler(), configURL)
-	return nil
-}
-
-func bootstrapHTTP(starter assembler.AssemblerManager, configPath string) {
-	//err := tracer.Init(&tracer.TracerConfig{
-	//	UseJaeger:   false,
-	//	Environment: env.GetEnvironmentName(),
-	//	ServiceName: "golang-standards-project-layout",
-	//})
-
-	//if err != nil {
-	//	log.Fatalln(err)
-	//}
-
-	starter = starter.BuildService(configPath).AssembleWebApplication()
-	starter.RunWebApplication()
-
-	select {
-	case err := <-starter.ListenErrorWebApp():
-		log.Fatalf("Error starting web server, exiting gracefully %v:", err)
-	case <-starter.TerminateSignal():
-		log.Fatalln("Exiting gracefully...")
+	err := app.New().Run()
+	if err != nil {
+		logger.Zap.Sugar().Fatal(err)
 	}
+	return nil
 }

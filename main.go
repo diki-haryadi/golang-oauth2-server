@@ -1,6 +1,6 @@
 package main
 
-import "golang-standards-project-layout/cmd"
+import "golang-oauth2-server/cmd"
 
 func main() {
 	cmd.Execute()
