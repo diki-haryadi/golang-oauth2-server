@@ -90,27 +90,29 @@ lint-go: ## Use golintci-lint on your project
 	$(eval OUTPUT_OPTIONS = $(shell [ "${EXPORT_RESULT}" == "true" ] && echo "--out-format checkstyle ./... | tee /dev/tty > checkstyle-report.xml" || echo "" ))
 	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:latest-alpine golangci-lint run --deadline=65s $(OUTPUT_OPTIONS)
 
-## ---------- Migration ----------
-.PHONY: rollback
-migrate-rollback: ### migration roll-back
-	migrate -source db/migrations -database $(PG_URL) down
+.PHONY: fmt lint golint test test-with-coverage ci
+# TODO: When Go 1.9 is released vendor folder should be ignored automatically
+PACKAGES=`go list ./... | grep -v vendor | grep -v mocks`
 
-.PHONY: drop
-migrate-drop: ### migration drop
-	migrate -source db/migrations -database $(PG_URL)  drop
+fmt:
+	for pkg in ${PACKAGES}; do \
+		go fmt $$pkg; \
+	done;
 
-.PHONY: migrate-create
-# ex: make migrate-create migrate_name=users
-migrate-create:  ### create new migration
-	migrate create -ext sql -dir db/migrations $(migrate_name)
+lint:
+	gometalinter --tests --disable-all --deadline=120s -E vet -E gofmt -E misspell -E ineffassign -E goimports -E deadcode ./...
 
-.PHONY: migrate-up
-migrate-up: ### migration up
-	migrate -path db/migrations -database $(PG_URL) up
+golint:
+	for pkg in ${PACKAGES}; do \
+		golint $$pkg; \
+	done;
 
-.PHONY: force
-migrate-force: ### force
-	migrate -path db/migrations -database $(PG_URL) force $(id)
+test:
+	TEST_FAILED= ; \
+	for pkg in ${PACKAGES}; do \
+		go test $$pkg || TEST_FAILED=1; \
+	done; \
+	[ -z "$$TEST_FAILED" ]
 
 gen-go:
 	protoc --proto_path=./api --go-grpc_out=require_unimplemented_servers=false:./api/${domain}/v1/ --go_out=./api/${domain}/v1/ ./api/${domain}/v1/*.proto
