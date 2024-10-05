@@ -11,11 +11,10 @@ CREATE TABLE authorization_codes (
    "expires_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL,  -- Expiration timestamp
    "scope" VARCHAR(50) NOT NULL,  -- Consider if this should be unique
    "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    "deleted_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL
 );
 
 -- Indexes for performance
 CREATE INDEX idx_authorization_codes_client_id ON authorization_codes("client_id");
 CREATE INDEX idx_authorization_codes_user_id ON authorization_codes("user_id");
-CREATE INDEX idx_authorization_codes_token ON authorization_codes("token");  -- Optional: index for token lookups

@@ -4,7 +4,7 @@ CREATE TABLE roles (
    "id" uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
    "name" VARCHAR(200) NOT NULL UNIQUE,  -- Unique role name
    "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,  -- Timestamp of creation
-   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Timestamp of last update
+   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,  -- Timestamp of last update
    "deleted_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL  -- Timestamp of deletion
 );
 

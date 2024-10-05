@@ -7,8 +7,7 @@ CREATE TABLE users (
    "role" VARCHAR(50) NOT NULL,  -- Consider ENUM if roles are fixed
    "role_id" VARCHAR(50) NOT NULL UNIQUE,  -- If role_id should be unique
    "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-   "deleted_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL,
+   "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+   "deleted_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL
 --  CONSTRAINT unique_username_role UNIQUE ("username", "role")  -- Optional: if a user can have only one role
 );
-CREATE INDEX idx_users_username ON users("username");

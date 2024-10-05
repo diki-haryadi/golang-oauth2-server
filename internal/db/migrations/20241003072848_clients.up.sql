@@ -6,9 +6,9 @@ CREATE TABLE clients (
        "secret" VARCHAR(128) NOT NULL,            -- Increased length for security
        "redirect_uri" VARCHAR(200) NOT NULL,      -- Consider adding a check constraint if needed
        "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-       "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+       "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
        "deleted_at" TIMESTAMP WITH TIME ZONE DEFAULT NULL
     );
 
 -- Optional: Create an index on redirect_uri if you plan to query by it
-CREATE INDEX idx_users_redirect_uri ON users("redirect_uri");
+CREATE INDEX idx_users_redirect_uri ON clients("redirect_uri");
