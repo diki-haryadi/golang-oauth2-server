@@ -122,6 +122,29 @@ gen-go:
 clean-cache:
 	go clean -modcache
 
+
+## ---------- Migration ----------
+.PHONY: rollback
+migrate-rollback: ### migration roll-back
+	migrate -source db/migrations -database $(PG_URL) down
+
+.PHONY: drop
+migrate-drop: ### migration drop
+	migrate -source db/migrations -database $(PG_URL)  drop
+
+.PHONY: migrate-create
+# ex: make migrate-create migrate_name=users
+migrate-create:  ### create new migration
+	migrate create -ext sql -dir db/migrations $(migrate_name)
+
+.PHONY: migrate-up
+migrate-up: ### migration up
+	migrate -path db/migrations -database $(PG_URL) up
+
+.PHONY: force
+migrate-force: ### force
+	migrate -path db/migrations -database $(PG_URL) force $(id)
+
 ## ---------- Help ----------
 .PHONY: help
 help: ## Show this help.
