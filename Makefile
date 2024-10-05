@@ -9,8 +9,14 @@ GOCMD=go
 TEST_COVERAGE_FLAGS = -race -coverprofile=coverage.out -covermode=atomic
 TEST_FLAGS?= -timeout 15m
 
+# Load environment variables from .env file
+load_env:
+	@export $$(grep -v '^#' .env | xargs)
+
+# Read USERNAME from .env
+USERNAME := $(shell grep '^USERNAME=' .env | cut -d '=' -f2)
 # Set ENV
-export PG_URL=postgres://${USERNAME}:{PASSWORD}@${HOST}:${PORT}/${SCHEMA}?sslmode=disable ### DB Conn String For Migrations
+PG_URL=postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${SCHEMA}?sslmode=disable ### DB Conn String For Migrations
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
@@ -135,15 +141,15 @@ migrate-drop: ### migration drop
 .PHONY: migrate-create
 # ex: make migrate-create migrate_name=users
 migrate-create:  ### create new migration
-	migrate create -ext sql -dir db/migrations $(migrate_name)
+	migrate create -ext sql -dir internal/db/migrations $(migrate_name)
 
 .PHONY: migrate-up
 migrate-up: ### migration up
-	migrate -path db/migrations -database $(PG_URL) up
+	migrate -path internal/db/migrations -database $(PG_URL) up
 
 .PHONY: force
 migrate-force: ### force
-	migrate -path db/migrations -database $(PG_URL) force $(id)
+	migrate -path internal/db/migrations -database $(PG_URL) force $(id)
 
 ## ---------- Help ----------
 .PHONY: help
