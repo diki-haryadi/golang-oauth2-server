@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	scopeConfigurator "golang-oauth2-server/internal/modules/scope/configurator"
 	"os"
 	"os/signal"
 	"syscall"
@@ -83,6 +84,11 @@ func configureModule(ctx context.Context, ic *iContainer.IContainer, extBridge *
 	}
 
 	err = healthCheckConfigurator.NewConfigurator(ic).Configure(ctx)
+	if err != nil {
+		return err
+	}
+
+	err = scopeConfigurator.NewConfigurator(ic).Configure(ctx)
 	if err != nil {
 		return err
 	}
